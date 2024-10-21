@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup/Login Example</title>
+    <style>
+        body {
+            font-family: Elephant;
+            background-color: maroon;
+            color: green;
+        }
+        .login-container, .signup-container {
+            display: none;
+            text-align: center;
+            background-color: black;
+            color: green;
+            padding: 40px;
+            border-radius: 20px;
+            width: 300px;
+            margin: 100px auto;
+        }
+        .home-container {
+            display: none;
+            background-color: black;
+            color: black;
+            min-height: 100vh;
+            padding-top: 10px;
+        }
+        #top-bar {
+            background-color:gold ;
+            color: blue;
+            padding: 30px;
+            display: flex;
+            align-items: fit;
+            justify-content: space-between;
+        }
+        #bonus, #wallet {
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: none;
+        }
+        .banner {
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 999;
+        }
+        .banner.red {
+            background-color: red;
+        }
+        .wallet-options {
+            display: none;
+            background: green;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            width: 300px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .wallet-options .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            background: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            }
+        .button-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .action-button {
+            background-color: green;
+            color: white;
+            padding: 50px 150px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 10px;
+          }
+        }
+       footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: white;
+            color: green;
+            font-weight: bold;
+            padding: 20px 0;
+            
+        }
+        @keyframes scrollText {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>PAYHERO</h2>
+        <input type="text" id="login-username" placeholder="Username"><br><br>
+        <input type="password" id="login-password" placeholder="Password"><br><br>
+        <button onclick="login()">Login</button>
+        <p>Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+    </div>
+
+    <div class="signup-container">
+        <h2>PAYHERO</h2>
+        <input type="text" id="signup-username" placeholder="Username"><br><br>
+        <input type="password" id="signup-password" placeholder="Password"><br><br>
+        <button onclick="signup()">Sign Up</button>
+        <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+    </div>
+
+    <div class="home-container">
+        <div id="top-bar">
+            <input type="file" id="profile-pic-upload" accept="image/*" style="display:none" onchange="uploadProfilePic(event)">
+            <img id="profile-pic" class="profile-pic" src="" alt="Profile Picture">
+            <span onclick="document.getElementById('profile-pic-upload').click()">👤Update</span>
+            <div>
+                <span id="bonus">🎁 Claim bonous</span>
+                <span id="wallet">💼 Wallet</span>
+                 </div>
+        </div>
+        
+        <div class="button-container">
+            <button class="action-button" onclick="window.location.href='https://airtime.africomltd.com/'">Top Up</button>
+            <button class="action-button" onclick="alert('Coming soon...')">Pay Bills</button>
+            <button class="action-button" onclick="alert('Available from Wednesday, 23 October')">Kopa Fare</button>
+        </div>
+        
+        <div class="wallet-options" id="wallet-options">
+            <button class="close-btn" onclick="closeWalletOptions()">X</button>
+            <p>Account Balance: <span id="balance">0 KSH</span></p>
+            <button onclick="withdraw()">Withdraw (Min: 100 KSH)</button>
+            <br><br>
+            <button onclick="goToDeposit()">Deposit (Min: 20 KSH)</button>
+        </div>
+    </div>
+
+    <div class="banner" id="banner"></div>
+
+    <footer>
+    <marquee>    0798****43 recieved ksh 100,0723****51 recieved ksh 100,0713****36 recieved ksh 100,0734****22 recieved ksh 100,0715****31 recieved ksh 100, 0733****54 recieved ksh 100, 0731****90 recieved ksh 100, 0717****55 recieved ksh 100, 0755****11 recieved ksh 100 ,0708****42 recieved ksh100.</marquee>
+    </footer>
+
+    <script>
+        let balance = 0;
+        let bonusClaimed = false;
+        let storedUsername = '';
+        let storedPassword = '';
+        const paymentLink = "https://app.payhero.co.ke/lipwa/835";
+
+        function showSignup() {
+            document.querySelector('.login-container').style.display = 'none';
+            document.querySelector('.signup-container').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.querySelector('.signup-container').style.display = 'none';
+            document.querySelector('.login-container').style.display = 'block';
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            if (username === storedUsername && password === storedPassword) {
+                document.querySelector('.login-container').style.display = 'none';
+                document.querySelector('.home-container').style.display = 'block';
+                updateBalanceDisplay();
+            } else {
+                alert('Invalid credentials. Please sign up if you do not have an account.');
+            }
+        }
+
+        function signup() {
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+
+            if (username && password) {
+                storedUsername = username;
+                storedPassword = password;
+                alert('Signup successful! Please log in.');
+                showLogin();
+            } else {
+                alert('Please enter a username and password.');
+            }
+        }
+
+        function uploadProfilePic(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const profilePic = document.getElementById('profile-pic');
+                profilePic.src = e.target.result;
+                profilePic.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        document.getElementById('bonus').onclick = function() {
+            if (!bonusClaimed) {
+                bonusClaimed = true;
+                balance += 80;
+                showBanner('Congratulations! You have received 80 KSH.', 'green');
+                updateBalanceDisplay();
+            } else {
+                showBanner('You already claimed your bonus', 'red');
+            }
+        };
+
+        document.getElementById('wallet').onclick = function() {
+            document.getElementById('wallet-options').style.display = 'block';
+        };
+
+        function closeWalletOptions() {
+            document.getElementById('wallet-options').style.display = 'none';
+        }
+
+        function withdraw() {
+            const amount = prompt('Enter the amount to withdraw (Min: 100 KSH):');
+            const mpesaNumber = prompt('Enter your Mpesa number:');
+            if (amount >= 100) {
+                if (balance < 100) {
+                    showBanner('Insufficient balance for withdrawal, please add some funds to complete the transaction.', 'red');
+                } else {
+                    balance -= amount;
+                    updateBalanceDisplay();
+                    showBanner('Withdrawal successful! Wait for Mpesa message in 5 mins.', 'green');
+                }
+            } else {
+                alert('Minimum withdrawal is 100 KSH.');
+            }
+        }
+
+        function goToDeposit() {
+            // Redirect to the payment link
+            window.location.href = paymentLink;
+        }
+
+        function updateBalanceDisplay() {
+            document.getElementById('balance').innerText = `${balance} KSH`;
+        }
+
+        function showBanner(message, color) {
+            const banner = document.getElementById('banner');
+            banner.textContent = message;
+            banner.className = 'banner ' + (color === 'red' ? 'red' : '');
+            banner.style.display = 'block';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 2000);
+        }
+
+        // Start with signup form shown
+        showSignup();
+    </script>
+</body>
+  </html>
