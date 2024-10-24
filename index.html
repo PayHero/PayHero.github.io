@@ -118,6 +118,25 @@
     .social i {
       margin-right: 4px;
     }
+    /* Custom alert styles */
+    .alert {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 40%;
+      transform: translateX(-50%);
+      padding: 15px;
+      border-radius: 5px;
+      color: white;
+      font-weight: thin;
+      z-index: 1000;
+    }
+    .alert.success {
+      background-color: green;
+    }
+    .alert.error {
+      background-color: red;
+    }
   </style>
 </head>
 <body>
@@ -143,7 +162,23 @@
     </div>
   </form>
 
+  <!-- Custom alert messages -->
+  <div id="alert" class="alert"></div>
+
   <script>
+    // Show alert message
+    function showAlert(message, type) {
+      const alertBox = document.getElementById('alert');
+      alertBox.textContent = message;
+      alertBox.className = `alert ${type}`;
+      alertBox.style.display = 'block';
+      
+      // Automatically hide the alert after 3 seconds
+      setTimeout(() => {
+        alertBox.style.display = 'none';
+      }, 3000);
+    }
+
     // Signup function
     document.getElementById('signup-btn').addEventListener('click', (event) => {
       event.preventDefault();
@@ -155,9 +190,9 @@
         // Store user credentials in local storage
         localStorage.setItem('userEmail', email);
         localStorage.setItem('userPassword', password);
-        alert('Signup successful! You can now log in.');
+        showAlert('Signup successful! You can now log in.', 'success');
       } else {
-        alert('Please provide valid email and password.');
+        showAlert('Please provide valid email and password.', 'error');
       }
     });
 
@@ -173,12 +208,12 @@
 
       // Validate login
       if (email === storedEmail && password === storedPassword) {
-        alert('Login successful!');
+        showAlert('Login successful!', 'success');
         window.location.href = 'dashboard.html'; // Redirect to the dashboard page after login
       } else {
-        alert('Invalid email or password. Please check and try again.');
+        showAlert('Invalid email or password. Please check and try again.', 'error');
       }
     });
   </script>
 </body>
-        </html>
+    </html>
