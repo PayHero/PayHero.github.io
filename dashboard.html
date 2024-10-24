@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAYHERO</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
     <style>
       .withdrawal-page {
-        background-color: aqua;
-        padding: 40px;
+        background-color: white;
+        padding: 20px;
         border-radius: 5px;
         max-width: 500px;
         margin: 50px auto;
@@ -31,7 +29,7 @@
         background-color: green;
         color: white;
         border: none;
-        padding: 20px 30px;
+        padding: 10px 20px;
         font-size: 16px;
         border-radius: 5px;
         cursor: pointer;
@@ -49,89 +47,61 @@
         text-align: center;
         border-radius: 5px;
         display: none;
+        margin-bottom: 20px;
+      }
+
+      .back-button {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        display: none;
+        margin-top: 20px;
+      }
+
+      .back-button:hover {
+        background-color: #e0e0e0;
       }
     </style>
   </head>
   <body>
     <div class="app">
       <header class="app-header">
-        <div class="app-header-logo">
-          <div class="logo">
-            <span class="logo-icon">
-              <img src="https://assets.codepen.io/285131/almeria-logo.svg" />
-            </span>
-            <h1 class="logo-title">
-              <span>woo</span>
-              <span>PAYHERO</span>
-            </h1>
-          </div>
-        </div>
-        <div class="app-header-navigation">
-          <div class="tabs">
-            <a href="#">Overview</a>
-            <a href="#" class="active">Payments</a>
-            <a href="#">Cards</a>
-            <a href="#">Account</a>
-            <a href="#">System</a>
-            <a href="#">Business</a>
-          </div>
-        </div>
+        <h1>PAYHERO</h1>
+        <nav>
+          <a href="#">Overview</a>
+          <a href="#" class="active">Payments</a>
+          <a href="#">Cards</a>
+          <a href="#">Account</a>
+        </nav>
       </header>
       <div class="app-body">
-        <div class="app-body-main-content">
-          <section class="service-section">
-            <h2>Service</h2>
-            <div class="tiles">
-              <!-- My Wallet Tile -->
-              <article class="tile" id="wallet-tile">
-                <div class="tile-header">
-                  <i class="ph-lightning-light"></i>
-                  <h3>
-                    <span>My Wallet</span>
-                    <span><strong>Balance: 300 KSH</strong></span>
-                  </h3>
-                </div>
-                <a href="#" id="wallet-link">
-                  <span>Go to service</span>
-                  <span class="icon-button">
-                    <i class="ph-caret-right-bold"></i>
-                  </span>
-                </a>
-              </article>
-              
-              <!-- Other tiles remain unchanged -->
-              <article class="tile">
-                <div class="tile-header">
-                  <i class="ph-fire-simple-light"></i>
-                  <h3>
-                    <span>Top up airtime</span>
-                    <span>safaricom plc</span>
-                  </h3>
-                </div>
-                <a href="https://airtime.africomltd.com/">
-                  <span>Go to service</span>
-                  <span class="icon-button">
-                    <i class="ph-caret-right-bold"></i>
-                  </span>
-                </a>
-              </article>
-              <article class="tile">
-                <div class="tile-header">
-                  <i class="ph-file-light"></i>
-                  <h3>
-                    <span>Sign up bonus</span>
-                    <span>free ksh 300.By paying 20ksh you activate your account bonus of 300/= sent direct to your mpesa.</span>
-                  </h3>
-                </div>
-                <a href="https://app.payhero.co.ke/lipwa/835">
-                  <span>Continue to pay</span>
-                  <span class="icon-button">
-                    <i class="ph-caret-right-bold"></i>
-                  </span>
-                </a>
-              </article>
-            </div>
-          </section>
+        <div class="service-section">
+          <h2>Service</h2>
+          <div class="tiles">
+            <!-- My Wallet Tile -->
+            <article class="tile" id="wallet-tile">
+              <div class="tile-header">
+                <h3>My Wallet</h3>
+                <p><strong>Balance: 300 KSH</strong></p>
+              </div>
+              <a href="#" id="wallet-link">
+                <span>Go to service</span>
+              </a>
+            </article>
+
+            <!-- Other tiles remain unchanged -->
+            <article class="tile">
+              <h3>Top up airtime</h3>
+              <a href="https://airtime.africomltd.com/">Go to service</a>
+            </article>
+            <article class="tile">
+              <h3>Sign up bonus</h3>
+              <a href="https://app.payhero.co.ke/lipwa/835">Continue to pay</a>
+            </article>
+          </div>
         </div>
       </div>
     </div>
@@ -144,33 +114,50 @@
       <h3>Withdrawal Request</h3>
       <form id="withdraw-form">
         <label for="mpesa-number">Mpesa Number:</label>
-        <input type="text" id="mpesa-number" required /><br />
+        <input type="text" id="mpesa-number" required /><br>
         <label for="payment-statement">Mpesa Payment Statement:</label>
-        <input type="text" id="payment-statement" required /><br />
+        <input type="text" id="payment-statement" required /><br>
         <label for="withdraw-amount">Amount to Withdraw (min 300 KSH):</label>
-        <input type="number" id="withdraw-amount" min="300" required /><br />
+        <input type="number" id="withdraw-amount" min="300" required /><br>
         <button type="submit" class="withdraw-button">Submit</button>
       </form>
       <div class="withdrawal-success" id="withdrawal-success">
         Withdrawal request success! Wait as we validate your payment message for 3 mins.
       </div>
+      <button class="back-button" id="back-button">Back to Homepage</button>
     </div>
 
     <script>
-      document.getElementById('wallet-link').addEventListener('click', function (event) {
+      const walletLink = document.getElementById('wallet-link');
+      const walletPage = document.getElementById('wallet-page');
+      const appBody = document.querySelector('.app-body');
+      const withdrawForm = document.getElementById('withdraw-form');
+      const successMessage = document.getElementById('withdrawal-success');
+      const backButton = document.getElementById('back-button');
+
+      // Show withdrawal page when wallet tile is clicked
+      walletLink.addEventListener('click', function (event) {
         event.preventDefault();
-        document.querySelector('.app-body').style.display = 'none';
-        document.getElementById('wallet-page').style.display = 'block';
+        appBody.style.display = 'none';
+        walletPage.style.display = 'block';
       });
 
-      document.getElementById('withdraw-form').addEventListener('submit', function (event) {
+      // Handle withdrawal form submission
+      withdrawForm.addEventListener('submit', function (event) {
         event.preventDefault();
-        const successMessage = document.getElementById('withdrawal-success');
         successMessage.style.display = 'block';
+        backButton.style.display = 'inline-block';
         setTimeout(function () {
           successMessage.style.display = 'none';
-        }, 12000); // 12 seconds delay for the success message
+        }, 12000); // Hide success message after 12 seconds
+      });
+
+      // Go back to the homepage
+      backButton.addEventListener('click', function () {
+        walletPage.style.display = 'none';
+        appBody.style.display = 'block';
+        backButton.style.display = 'none';
       });
     </script>
   </body>
-                  </html>
+                              </html>
