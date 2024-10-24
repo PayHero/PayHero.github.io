@@ -173,7 +173,7 @@
       alertBox.className = `alert ${type}`;
       alertBox.style.display = 'block';
       
-      // Automatically hide the alert after 3 seconds
+      // Automatically hide the alert after 5 seconds
       setTimeout(() => {
         alertBox.style.display = 'none';
       }, 3000);
@@ -209,6 +209,7 @@
       // Validate login
       if (email === storedEmail && password === storedPassword) {
         showAlert('Login successful!', 'success');
+        // Automatically hide the alert after 4 seconds
         window.location.href = 'dashboard.html'; // Redirect to the dashboard page after login
       } else {
         showAlert('Invalid email or password. Please check and try again.', 'error');
