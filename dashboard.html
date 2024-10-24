@@ -2,30 +2,49 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="style.css">
-    <title>PAYHERO</title>
+    <title>PAYHERO - Wallet</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="styles.css" />
     <style>
-      .banner {
+      .withdrawal-page {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        max-width: 500px;
+        margin: 50px auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .banner, .withdrawal-success {
         background-color: green;
         color: white;
         padding: 10px;
         text-align: center;
         border-radius: 5px;
         display: none;
-        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+
+      .withdraw-button {
+        background-color: green;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .withdraw-button:hover {
+        background-color: darkgreen;
       }
 
       .withdrawal-success {
         background-color: lightgreen;
         color: green;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        display: none;
-        margin-top: 10px;
       }
     </style>
   </head>
@@ -53,66 +72,11 @@
             <a href="#">Business</a>
           </div>
         </div>
-        <div class="app-header-actions">
-          <button class="user-profile">
-            <span>Mutsotso Duncan</span>
-            <span>
-              <img src="" />
-            </span>
-          </button>
-          <div class="app-header-actions-buttons">
-            <button class="icon-button large">
-              <i class="ph-magnifying-glass"></i>
-            </button>
-            <button class="icon-button large">
-              <i class="ph-bell"></i>
-            </button>
-          </div>
-        </div>
-        <div class="app-header-mobile">
-          <button class="icon-button large">
-            <i class="ph-list"></i>
-          </button>
-        </div>
       </header>
       <div class="app-body">
-        <div class="app-body-navigation">
-          <nav class="navigation">
-            <a href="#"><i class="ph-browsers"></i><span>Dashboard</span></a>
-            <a href="#"><i class="ph-check-square"></i><span>Scheduled</span></a>
-            <a href="#"><i class="ph-swap"></i><span>Transfers</span></a>
-            <a href="#"><i class="ph-file-text"></i><span>Templates</span></a>
-            <a href="#"><i class="ph-globe"></i><span>SWIFT</span></a>
-            <a href="#"><i class="ph-clipboard-text"></i><span>Exchange</span></a>
-          </nav>
-          <footer class="footer">
-            <h1>Almeria<small>©</small></h1>
-            <div>
-              WOO ©<br />
-              All Rights Reserved 2021
-            </div>
-          </footer>
-        </div>
         <div class="app-body-main-content">
           <section class="service-section">
             <h2>Service</h2>
-            <div class="service-section-header">
-              <div class="search-field">
-                <i class="ph-magnifying-glass"></i>
-                <input type="text" placeholder="Account number">
-              </div>
-              <div class="dropdown-field">
-                <select>
-                  <option>Home</option>
-                  <option>Work</option>
-                </select>
-                <i class="ph-caret-down"></i>
-              </div>
-              <button class="flat-button">Search</button>
-            </div>
-            <div class="mobile-only">
-              <button class="flat-button">Search for a service</button>
-            </div>
             <div class="tiles">
               <article class="tile" id="wallet-tile">
                 <div class="tile-header">
@@ -122,78 +86,43 @@
                     <span><strong>Balance: 300 KSH</strong></span>
                   </h3>
                 </div>
-                <a href="#" id="wallet-link">
+                <a href="wallet.html" id="wallet-link">
                   <span>Go to service</span>
                   <span class="icon-button">
                     <i class="ph-caret-right-bold"></i>
                   </span>
                 </a>
               </article>
-              <article class="tile">
-                <div class="tile-header">
-                  <i class="ph-fire-simple-light"></i>
-                  <h3>
-                    <span>Top up airtime</span>
-                    <span>safaricom plc</span>
-                  </h3>
-                </div>
-                <a href="https://airtime.africomltd.com/">
-                  <span>Go to service</span>
-                  <span class="icon-button">
-                    <i class="ph-caret-right-bold"></i>
-                  </span>
-                </a>
-              </article>
-              <article class="tile">
-                <div class="tile-header">
-                  <i class="ph-file-light"></i>
-                  <h3>
-                    <span>sign up bonous</span>
-                    <span>free ksh 300.By paying 20ksh you activate your account bonous of 300/= sent direct to your mpesa.</span>
-                  </h3>
-                </div>
-                <a href="https://app.payhero.co.ke/lipwa/835">
-                  <span>Continue to pay</span>
-                  <span class="icon-button">
-                    <i class="ph-caret-right-bold"></i>
-                  </span>
-                </a>
-              </article>
-            </div>
-            <div class="banner" id="wallet-banner">
-              Make sure you have made your customer launch fee of 20 KSH.
-            </div>
-            <div id="withdrawal-form" style="display: none;">
-              <h3>Withdrawal Request</h3>
-              <form id="withdraw-form">
-                <label for="mpesa-number">Mpesa Number:</label>
-                <input type="text" id="mpesa-number" required /><br />
-                <label for="payment-statement">Mpesa Payment Statement:</label>
-                <input type="text" id="payment-statement" required /><br />
-                <label for="withdraw-amount">Amount to Withdraw (min 300 KSH):</label>
-                <input type="number" id="withdraw-amount" min="300" required /><br />
-                <button type="submit">Submit</button>
-              </form>
-            </div>
-            <div class="withdrawal-success" id="withdrawal-success">
-              Withdrawal request success! Wait as we validate your payment message for 3 mins.
-            </div>
-            <div class="service-section-footer">
-              <p>Services are paid according to customers' needs.</p>
             </div>
           </section>
         </div>
       </div>
     </div>
+
+    <!-- New Page: wallet.html -->
+    <div class="withdrawal-page" id="wallet-page">
+      <div class="banner" id="wallet-banner">
+        Make sure you have made your customer launch fee of 20 KSH.
+      </div>
+      <h3>Withdrawal Request</h3>
+      <form id="withdraw-form">
+        <label for="mpesa-number">Mpesa Number:</label>
+        <input type="text" id="mpesa-number" required /><br />
+        <label for="payment-statement">Mpesa Payment Statement:</label>
+        <input type="text" id="payment-statement" required /><br />
+        <label for="withdraw-amount">Amount to Withdraw (min 300 KSH):</label>
+        <input type="number" id="withdraw-amount" min="300" required /><br />
+        <button type="submit" class="withdraw-button">Submit</button>
+      </form>
+      <div class="withdrawal-success" id="withdrawal-success">
+        Withdrawal request success! Wait as we validate your payment message for 3 mins.
+      </div>
+    </div>
+
     <script>
       document.getElementById('wallet-link').addEventListener('click', function (event) {
         event.preventDefault();
-        const banner = document.getElementById('wallet-banner');
-        banner.style.display = 'block';
-        setTimeout(function () {
-          banner.style.display = 'none';
-          document.getElementById('withdrawal-form').style.display = 'block';
-        }, 3000); // Banner displays for 3 seconds
+        window.location.href = 'wallet.html';
       });
 
       document.getElementById('withdraw-form').addEventListener('submit', function (event) {
@@ -206,4 +135,4 @@
       });
     </script>
   </body>
-        </html>
+                      </html>
