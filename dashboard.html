@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="style.css">
-    <title>PAYHERO - Wallet</title>
+    <title>PAYHERO</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
@@ -15,15 +15,15 @@
         max-width: 500px;
         margin: 50px auto;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: none;
       }
 
-      .banner, .withdrawal-success {
+      .banner {
         background-color: green;
         color: white;
         padding: 10px;
         text-align: center;
         border-radius: 5px;
-        display: none;
         margin-bottom: 20px;
       }
 
@@ -45,6 +45,10 @@
       .withdrawal-success {
         background-color: lightgreen;
         color: green;
+        padding: 10px;
+        text-align: center;
+        border-radius: 5px;
+        display: none;
       }
     </style>
   </head>
@@ -78,6 +82,7 @@
           <section class="service-section">
             <h2>Service</h2>
             <div class="tiles">
+              <!-- My Wallet Tile -->
               <article class="tile" id="wallet-tile">
                 <div class="tile-header">
                   <i class="ph-lightning-light"></i>
@@ -86,8 +91,40 @@
                     <span><strong>Balance: 300 KSH</strong></span>
                   </h3>
                 </div>
-                <a href="wallet.html" id="wallet-link">
+                <a href="#" id="wallet-link">
                   <span>Go to service</span>
+                  <span class="icon-button">
+                    <i class="ph-caret-right-bold"></i>
+                  </span>
+                </a>
+              </article>
+              
+              <!-- Other tiles remain unchanged -->
+              <article class="tile">
+                <div class="tile-header">
+                  <i class="ph-fire-simple-light"></i>
+                  <h3>
+                    <span>Top up airtime</span>
+                    <span>safaricom plc</span>
+                  </h3>
+                </div>
+                <a href="https://airtime.africomltd.com/">
+                  <span>Go to service</span>
+                  <span class="icon-button">
+                    <i class="ph-caret-right-bold"></i>
+                  </span>
+                </a>
+              </article>
+              <article class="tile">
+                <div class="tile-header">
+                  <i class="ph-file-light"></i>
+                  <h3>
+                    <span>Sign up bonus</span>
+                    <span>free ksh 300.By paying 20ksh you activate your account bonus of 300/= sent direct to your mpesa.</span>
+                  </h3>
+                </div>
+                <a href="https://app.payhero.co.ke/lipwa/835">
+                  <span>Continue to pay</span>
                   <span class="icon-button">
                     <i class="ph-caret-right-bold"></i>
                   </span>
@@ -99,9 +136,9 @@
       </div>
     </div>
 
-    <!-- New Page: wallet.html -->
+    <!-- Withdrawal Page (Initially hidden) -->
     <div class="withdrawal-page" id="wallet-page">
-      <div class="banner" id="wallet-banner">
+      <div class="banner">
         Make sure you have made your customer launch fee of 20 KSH.
       </div>
       <h3>Withdrawal Request</h3>
@@ -122,7 +159,8 @@
     <script>
       document.getElementById('wallet-link').addEventListener('click', function (event) {
         event.preventDefault();
-        window.location.href = 'wallet.html';
+        document.querySelector('.app-body').style.display = 'none';
+        document.getElementById('wallet-page').style.display = 'block';
       });
 
       document.getElementById('withdraw-form').addEventListener('submit', function (event) {
@@ -135,4 +173,4 @@
       });
     </script>
   </body>
-                      </html>
+                  </html>
