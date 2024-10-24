@@ -7,6 +7,22 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .message {
+        color: green;
+        display: none;
+        margin-top: 10px;
+      }
+
+      .withdrawal-success {
+        background-color: lightgreen;
+        color: green;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div class="app">
@@ -24,29 +40,17 @@
         </div>
         <div class="app-header-navigation">
           <div class="tabs">
-            <a href="#">
-              Overview
-            </a>
-            <a href="#" class="active">
-              Payments
-            </a>
-            <a href="#">
-              Cards
-            </a>
-            <a href="#">
-              Account
-            </a>
-            <a href="#">
-              System
-            </a>
-            <a href="#">
-              Business
-            </a>
+            <a href="#">Overview</a>
+            <a href="#" class="active">Payments</a>
+            <a href="#">Cards</a>
+            <a href="#">Account</a>
+            <a href="#">System</a>
+            <a href="#">Business</a>
           </div>
         </div>
         <div class="app-header-actions">
           <button class="user-profile">
-            <span>Mutsotso duncan</span>
+            <span>Mutsotso Duncan</span>
             <span>
               <img src="" />
             </span>
@@ -65,35 +69,16 @@
             <i class="ph-list"></i>
           </button>
         </div>
-
       </header>
       <div class="app-body">
         <div class="app-body-navigation">
           <nav class="navigation">
-            <a href="#">
-              <i class="ph-browsers"></i>
-              <span>Dashboard</span>
-            </a>
-            <a href="#">
-              <i class="ph-check-square"></i>
-              <span>Scheduled</span>
-            </a>
-            <a href="#">
-              <i class="ph-swap"></i>
-              <span>Transfers</span>
-            </a>
-            <a href="#">
-              <i class="ph-file-text"></i>
-              <span>Templates</span>
-            </a>
-            <a href="#">
-              <i class="ph-globe"></i>
-              <span>SWIFT</span>
-            </a>
-            <a href="#">
-              <i class="ph-clipboard-text"></i>
-              <span>Exchange</span>
-            </a>
+            <a href="#"><i class="ph-browsers"></i><span>Dashboard</span></a>
+            <a href="#"><i class="ph-check-square"></i><span>Scheduled</span></a>
+            <a href="#"><i class="ph-swap"></i><span>Transfers</span></a>
+            <a href="#"><i class="ph-file-text"></i><span>Templates</span></a>
+            <a href="#"><i class="ph-globe"></i><span>SWIFT</span></a>
+            <a href="#"><i class="ph-clipboard-text"></i><span>Exchange</span></a>
           </nav>
           <footer class="footer">
             <h1>Almeria<small>©</small></h1>
@@ -118,66 +103,68 @@
                 </select>
                 <i class="ph-caret-down"></i>
               </div>
-              <button class="flat-button">
-                Search
-              </button>
+              <button class="flat-button">Search</button>
             </div>
             <div class="mobile-only">
-              <button class="flat-button">
-                Search for a service
-              </button>
+              <button class="flat-button">Search for a service</button>
             </div>
             <div class="tiles">
-              <article class="tile">
+              <article class="tile" id="wallet-tile">
                 <div class="tile-header">
                   <i class="ph-lightning-light"></i>
                   <h3>
-                    <span>lipa stima</span>
-                    <span>stima sacco.</span>
+                    <span>My Wallet</span>
+                    <span><strong>Balance: 300 KSH</strong></span>
                   </h3>
                 </div>
-                <a href="">
+                <a href="#" id="wallet-link">
                   <span>Go to service</span>
                   <span class="icon-button">
                     <i class="ph-caret-right-bold"></i>
                   </span>
                 </a>
               </article>
-              <article class="tile">
-                <div class="tile-header">
-                  <i class="ph-fire-simple-light"></i>
-                  <h3>
-                    <span>Top up airtime</span>
-                    <span>safaricom plc</span>
-                  </h3>
-                </div>
-                <a href="https://airtime.africomltd.com/">
-                  <span>Go to service</span>
-                  <span class="icon-button">
-                    <i class="ph-caret-right-bold"></i>
-                  </span>
-                </a>
-              </article>
-              <article class="tile">
-                <div class="tile-header">
-                  <i class="ph-file-light"></i>
-                  <h3>
-                    <span>sign up bonous</span>
-                    <span>free ksh 300.By paying 20ksh you activate your account bonous of 300/= sent direct to your mpesa.</span>
-                  </h3>
-                </div>
-                <a href="https://app.payhero.co.ke/lipwa/835">
-                  <span>Continue to pay</span>
-                  <span class="icon-button">
-                    <i class="ph-caret-right-bold"></i>
-                  </span>
-                </a>
-              </article>
+              <!-- Other articles here -->
+            </div>
+            <div class="message" id="wallet-message">
+              Make sure you have made your customer launch fee of 20 KSH.
+            </div>
+            <div id="withdrawal-form" style="display: none;">
+              <h3>Withdrawal Request</h3>
+              <form id="withdraw-form">
+                <label for="mpesa-number">Mpesa Number:</label>
+                <input type="text" id="mpesa-number" required /><br />
+                <label for="payment-statement">Mpesa Payment Statement:</label>
+                <input type="text" id="payment-statement" required /><br />
+                <label for="withdraw-amount">Amount to Withdraw (min 300 KSH):</label>
+                <input type="number" id="withdraw-amount" min="300" required /><br />
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+            <div class="withdrawal-success" id="withdrawal-success">
+              Withdrawal request success! Wait as we validate your payment message for 3 mins.
             </div>
             <div class="service-section-footer">
-              <p>Services are paid according to customers needs.</p>
+              <p>Services are paid according to customers' needs.</p>
             </div>
           </section>
-          
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById('wallet-link').addEventListener('click', function (event) {
+        event.preventDefault();
+        document.getElementById('wallet-message').style.display = 'block';
+        document.getElementById('withdrawal-form').style.display = 'block';
+      });
+
+      document.getElementById('withdraw-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        document.getElementById('withdrawal-success').style.display = 'block';
+        setTimeout(function () {
+          document.getElementById('withdrawal-success').style.display = 'none';
+        }, 12000); // 12 seconds delay
+      });
+    </script>
   </body>
-</html>
+              </html>
