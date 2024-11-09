@@ -19,16 +19,20 @@
       }
 
       .banner {
-        background-color: green;
-        color: white;
-        padding: 10px;
+        display: none;
+        position: absolute;
+        top: -50px;
+        left: 0;
+        right: 0;
         text-align: center;
-        border-radius: 50px;
-        margin-bottom: 20px;
+        padding: 10px;
+        background-color: black;
+        color: #4CAF50;
+        border-radius: 4px;
       }
 
       .withdraw-button {
-        background-color: green;
+        background-color: #4CAF50;
         color: white;
         border: none;
         padding: 10px 60px;
@@ -39,16 +43,39 @@
       }
 
       .withdraw-button:hover {
-        background-color: green;
+        background-color: #45a049;
       }
 
-      .withdrawal-success {
-        background-color: lightgreen;
-        color: green;
-        padding: 10px;
-        text-align: full;
-        border-radius: 5px;
-        display: none;
+      .container {
+        width: 300px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .container h2, .container p {
+        text-align: center;
+        color: #333;
+      }
+
+      .container h2 {
+        margin-top: 0;
+      }
+
+      .container label {
+        display: block;
+        margin-top: 15px;
+        color: #333;
+      }
+
+      .container input[type="text"], .container input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
       }
     </style>
   </head>
@@ -138,22 +165,21 @@
 
     <!-- Withdrawal Page (Initially hidden) -->
     <div class="withdrawal-page" id="wallet-page">
-      <div class="banner">
-        Make sure you have activated your account by paying 20ksh for succesful withdrawal .
-      </div>
-      <h3>Withdrawal Request</h3>
-      <form id="withdraw-form">
-        <label for="mpesa-number">Mpesa Number:</label>
-        <input type="text" id="mpesa-number" required /><br />
-        <label for="payment-statement">Mpesa Payment Statement:</label>
-        <input type="text" id="payment-statement" required /><br />
-        <label for="withdraw-amount">Amount to Withdraw (min 100 KSH):</label>
-        <input type="number" id="withdraw-amount" min="100" required /><br />
-        <button type="submit" class="withdraw-button">Withdraw cash</button>
-      </form>
-      <div class="withdrawal-success" id="withdrawal-success">
-        Withdrawal request success! Wait as we validate your payment message for 3 mins.
-        Refresh the page to go back!
+      <div class="container">
+        <div class="banner" id="successBanner">Withdrawal Success</div>
+        
+        <p>Pay the required amount</p>
+        <h2>Enter Your Withdrawal Details</h2>
+        <label for="mpesaNumber">Mpesa Number:</label>
+        <input type="text" id="mpesaNumber" placeholder="Enter Mpesa Number" maxlength="10" oninput="validateMpesaNumber()">
+        
+        <label for="paymentMessage">Mpesa Payment Message:</label>
+        <input type="text" id="paymentMessage" placeholder="Enter Mpesa Payment Message" oninput="validatePaymentMessage()">
+        
+        <label for="withdrawAmount">Amount to Withdraw (min 100):</label>
+        <input type="number" id="withdrawAmount" placeholder="Enter Amount">
+        
+        <button class="withdraw-button" onclick="submitWithdrawal()">Withdraw</button>
       </div>
     </div>
 
@@ -164,14 +190,36 @@
         document.getElementById('wallet-page').style.display = 'block';
       });
 
-      document.getElementById('withdraw-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        const successMessage = document.getElementById('withdrawal-success');
-        successMessage.style.display = 'block';
-        setTimeout(function () {
-          successMessage.style.display = 'none';
-        }, 12000); // 12 seconds delay for the success message
-      });
+      function validateMpesaNumber() {
+        const mpesaNumberInput = document.getElementById('mpesaNumber');
+        mpesaNumberInput.value = mpesaNumberInput.value.replace(/[^0-9]/g, ''); // Allow only digits
+        if (mpesaNumberInput.value.length > 10) { // Restrict length to 10 digits
+          mpesaNumberInput.value = mpesaNumberInput.value.slice(0, 10);
+        }
+      }
+
+      function validatePaymentMessage() {
+        const paymentMessageInput = document.getElementById('paymentMessage');
+        paymentMessageInput.value = paymentMessageInput.value.replace(/[^a-zA-Z0-9 ]/g, ''); // Allow both letters and digits
+      }
+
+      function submitWithdrawal() {
+        const amount = document.getElementById('withdrawAmount').value;
+        const successBanner = document.getElementById('successBanner');
+        
+        if (amount >= 100) {
+          successBanner.style.display = 'block';
+          setTimeout(() => {
+            successBanner.style.display = 'none';
+            // Clear form inputs
+            document.getElementById('mpesaNumber').value = '';
+            document.getElementById('paymentMessage').value = '';
+            document.getElementById('withdrawAmount').value = '';
+          }, 5000); // Banner disappears and form clears after 5 seconds
+        } else {
+          alert("Minimum withdrawal amount is 100.");
+        }
+      }
     </script>
   </body>
-                      </html>
+</html>
