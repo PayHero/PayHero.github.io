@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
   --c-gray-900: #000000;
@@ -22,7 +21,7 @@ body {
   line-height: 1.5;
   min-height: 100vh;
   font-family: "Be Vietnam Pro", elephant;
-  background-color: black;
+  background-color: grey;
   color: #1E90FF;
   display: flex;
   padding-top: 3vw;
@@ -63,7 +62,7 @@ a {
   min-height: 80vh;
   width: 95%;
   max-width: 1600px;
-  background-color: black;
+  background-color: #e5e5e5;
   padding: 2vw 4vw 6vw;
   display: flex;
   flex-direction: column;
@@ -174,7 +173,7 @@ a {
   align-items: center;
   padding-bottom: 1rem;
   padding-top: 1rem;
-  border-bottom: 1px solid var(--c-yellow-600);
+  border-bottom: 10px solid var(--c-blue-600);
 }
 @media (max-width: 1200px) {
   .logo {
@@ -186,8 +185,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12px;
-  height: 32px;
+  width: 102px;
+  height: 102px;
 }
 
 .logo-title {
@@ -197,10 +196,10 @@ a {
   margin-left: 0.75rem;
 }
 .logo-title span:first-child {
-  color: var(--c-text-primary);
+  color: green;
 }
 .logo-title span:last-child {
-  color: var(--c-text-tertiary);
+  color: bold;
 }
 
 .navigation {
@@ -329,8 +328,9 @@ a {
 
 .tile {
   padding: 1rem;
-  border-radius: 10px;
-  background-color: #D4AF37;
+  border-radius: 15px;
+  border: white;
+  background-color: black;
   color: white;
   min-height: 200px;
   display: flex;
@@ -352,17 +352,20 @@ a {
   box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-green-500);
 }
 .tile:nth-child(3) {
-  background-color: green;
-}
+  background-color: olive;
 }
 .tile:nth-child(4) {
+  background-color: purple;
+  }
+.tile:nth-child(5) {
+
   background-color: green;
-}
+  }
 .tile:nth-child(3):focus-within {
   box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-gray-300);
 }
 .tile a {
-  text-decoration: underline;
+  text-decoration: highlight;
   display: flex;
   align-items: center;
   justify-content: space-between;
