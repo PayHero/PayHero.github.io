@@ -1,150 +1,279 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
+
     <link rel="stylesheet" href="style.css">
+
     <title>JISORT MICRO BANK</title>
+
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
     <link rel="stylesheet" href="styles.css" />
+
     <style>
+
       .withdrawal-page {
+
         background-color: white;
+
         padding: 100px;
+
         border-radius: 30px;
+
         max-width: 900px;
+
         margin: 100px auto;
+
         box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+
         display: none;
+
       }
 
       .banner {
+
         display: none;
+
         position: absolute;
+
         top: -50px;
+
         left: 0;
+
         right: 0;
+
         text-align: center;
+
         padding: 10px;
+
         background-color: black;
+
         color: #4CAF50;
+
         border-radius: 4px;
+
       }
 
       .withdraw-button {
+
         background-color: #4CAF50;
+
         color: white;
+
         border: none;
+
         padding: 10px 90px;
+
         font-size: 16px;
+
         border-radius: 5px;
+
         cursor: pointer;
+
         font-weight: bold;
+
       }
 
       .withdraw-button:hover {
+
         background-color: #45a049;
+
       }
 
       .container {
+
         width: 300px;
+
         padding: 20px;
+
         background-color: white;
+
         border-radius: 8px;
+
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
         position: relative;
+
       }
 
       .container h2, .container p {
+
         text-align: center;
+
         color: #333;
+
       }
 
       .container h2 {
+
         margin-top: 0;
+
       }
 
       .container label {
+
         display: block;
+
         margin-top: 15px;
+
         color: #333;
+
       }
 
       .container input[type="text"], .container input[type="number"] {
+
         width: 100%;
+
         padding: 8px;
+
         margin-top: 5px;
+
         border: 10px solid #ccc;
+
         border-radius: 4px;
+
       }
+
     </style>
+
   </head>
+
   <body>
+
     <div class="app">
+
       <header class="app-header">
+
         <div class="app-header-logo">
+
           <div class="logo">
+
             <span class="logo-icon">
+
               <img src="https://assets.codepen.io/285131/almeria-logo.svg" />
+
             </span>
+
             <h1 class="logo-title">
+
               
+
               <span>JISORT MICRO BANK</span>
+
             </h1>
+
           </div>
+
         </div>
+
         <div class="app-header-navigation">
+
           <div class="tabs">
+
             <a href="#">Overview</a>
+
             <a href="#" class="active">Payments</a>
+
             <a href="#">Cards</a>
+
             <a href="#">Account</a>
+
             <a href="#">System</a>
+
             <a href="#">Business</a>
+
             #only the text below to move
+
           </div>
+
         </div>
+
       </header>
+
       <div class="app-body">
+
         <div class="app-body-main-content">
+
           <section class="service-section">
+
             <h2>Dashboard</h2>
+
             <div class="tiles">
+
               <!-- My Wallet Tile -->
+
               <article class="tile" id="wallet-tile">
+
                 <div class="tile-header">
+
                   <i class="ph-lightning-light"></i>
+
                   <h3>
+
                     <span>My Wallet</span>
+
                     <span><strong>Balance: 100 KSH</strong></span>
+
                   </h3>
+
                 </div>
+
                 <a href="#" id="wallet-link">
+
                   <span>Go to Withdraw</span>
+
                   <span class="icon-button">
+
                     <i class="ph-caret-right-bold"></i>
+
                   </span>
+
                 </a>
+
               </article>
+
               
+
               <!-- Other tiles remain unchanged -->
+
               <article class="tile">
+
                 <div class="tile-header">
+
                   <i class="ph-fire-simple-light"></i>
+
                   <h3>
+
                     <span>Direct Deposit</span>
+
                     <span>Top up account</span>
+
                   </h3>
+
                 </div>
+
                 
 
                 <a href="https://app.payhero.co.ke/lipwa/835">
+
                   <span>Go to service</span>
+
                   <span class="icon-button">
+
                     <i class="ph-caret-right-bold"></i>
+
                   </span>
+
                 </a>
+
               </article>
+
               <article class="tile">
 
                 <div class="tile-header">
@@ -162,7 +291,9 @@
                 </div>
 
                 <a href="">
+
                   Account Status:
+
                   <span>Unverified</span>
 
                   <span class="icon-button">
@@ -174,22 +305,38 @@
                 </a>
 
               </article>
+
               <article class="tile">
+
                 <div class="tile-header">
+
                   <i class="ph-file-light"></i>
+
                   <h3>
+
                     <span>Sign up bonus</span>
+
                     <span>Free ksh 100.By Depositing 20ksh you activate your account with us.</span>
+
                   </h3>
+
                 </div>
+
                 <a href="https://app.payhero.co.ke/lipwa/835">
+
                   <span>Continue to pay ksh 20</span>
+
                   <span class="icon-button">
+
                     <i class="ph-caret-right-bold"></i>
+
                   </span>
+
                 </a>
+
               </article>
-              <article class="tile">
+
+              
 
                 <div class="tile-header">
 
@@ -198,21 +345,65 @@
                   <h3>
 
                     <span>Refferal Program</span>
+
                     
 
-                <a href="">
+                
 
                     <span>Refer Friends and earn if they join and verify</span>
+                  
+
+  <label for="referralLink">Your Referral Link:</label>
+
+  <input type="text" id="referralLink" value="https://tinyurl.com/Jisortbanking" readonly>
+
+  <button onclick="copyReferralLink()" style="color:green;">Copy Link</button>
+
+  <p id="copyMessage" style="color : green;" ></p>
+
+ 
+
+    <i class="ph-caret-right-bold"></i>
+
+  </span>
+  
+
+  <p> Earnings: 0 KSH</p>
+
+
+<script>
+
+  function copyReferralLink() {
+
+    const referralLink = document.getElementById("referralLink");
+
+    referralLink.select();
+
+    referralLink.setSelectionRange(0, 99999); // For mobile devices
+
+    navigator.clipboard.writeText(referralLink.value).then(() => {
+
+      document.getElementById("copyMessage").innerText = "Referral link copied!";
+
+    }).catch(err => {
+
+      document.getElementById("copyMessage").innerText = "Failed to copy link";
+
+    });
+
+  }
+
+</script>
 
                   </h3>
 
                 </div>
 
-                Earnings:0ksh
+               
 
                   <span></span>
 
-                  <span class="icon-button">
+                 
 
                     <i class="ph-caret-right-bold"></i>
 
@@ -221,69 +412,125 @@
                 </a>
 
               </article>
+
             </div>
+
           </section>
+
         </div>
+
       </div>
+
     </div>
 
     <!-- Withdrawal Page (Initially hidden) -->
+
     <div class="withdrawal-page" id="wallet-page">
+
       <div class="container">
+
         <div class="banner" id="successBanner">Request submitted successfully.Ensure you activated your account by depositing</div>
+
         
+
         <p>Pay the required amount</p>
+
         <h2>Enter Your Withdrawal Details</h2>
+
         <label for="mpesaNumber">Mpesa Number:</label>
+
         <input type="text" id="mpesaNumber" placeholder="Enter Mpesa Number" maxlength="10" oninput="validateMpesaNumber()">
+
         
+
         <label for="paymentMessage">Mpesa Payment Message:</label>
+
         <input type="text" id="paymentMessage" placeholder="Enter Mpesa Payment Message" oninput="validatePaymentMessage()">
+
         
+
         <label for="withdrawAmount">Amount to Withdraw (min 100):</label>
+
         <input type="number" id="withdrawAmount" placeholder="Enter Amount">
+
         
+
         <button class="withdraw-button" onclick="submitWithdrawal()">Withdraw</button>
+
       </div>
+
     </div>
 
     <script>
+
       document.getElementById('wallet-link').addEventListener('click', function (event) {
+
         event.preventDefault();
+
         document.querySelector('.app-body').style.display = 'none';
+
         document.getElementById('wallet-page').style.display = 'block';
+
       });
 
       function validateMpesaNumber() {
+
         const mpesaNumberInput = document.getElementById('mpesaNumber');
+
         mpesaNumberInput.value = mpesaNumberInput.value.replace(/[^0-9]/g, ''); // Allow only digits
+
         if (mpesaNumberInput.value.length > 10) { // Restrict length to 10 digits
+
           mpesaNumberInput.value = mpesaNumberInput.value.slice(0, 10);
+
         }
+
       }
 
       function validatePaymentMessage() {
+
         const paymentMessageInput = document.getElementById('paymentMessage');
+
         paymentMessageInput.value = paymentMessageInput.value.replace(/[^a-zA-Z0-9 ]/g, ''); // Allow both letters and digits
+
       }
 
       function submitWithdrawal() {
+
         const amount = document.getElementById('withdrawAmount').value;
+
         const successBanner = document.getElementById('successBanner');
+
         
+
         if (amount >= 100) {
+
           successBanner.style.display = 'block';
+
           setTimeout(() => {
+
             successBanner.style.display = 'none';
+
             // Clear form inputs
+
             document.getElementById('mpesaNumber').value = '';
+
             document.getElementById('paymentMessage').value = '';
+
             document.getElementById('withdrawAmount').value = '';
+
           }, 5000); // Banner disappears and form clears after 5 seconds
+
         } else {
+
           alert("Minimum withdrawal amount is 100.");
+
         }
+
       }
+
     </script>
+
   </body>
+
 </html>
